@@ -30,24 +30,31 @@ public final class SpaceMod implements ModInitializer {
         return Registry.register(BuiltInRegistries.ITEM, key, new Item(new Item.Properties().setId(key)) {
             @Override public InteractionResult useOn(UseOnContext ctx) {
                 var level = ctx.getLevel();
-                var pos = ctx.getClickedPos().above();
-                if (ctx.getClickedFace() != Direction.UP || !level.dimension().equals(Level.OVERWORLD)
-                        || !level.isEmptyBlock(pos) || (ship && !level.getBlockState(ctx.getClickedPos()).is(Blocks.LODESTONE))) {
+                var clicked = ctx.getClickedPos();
+                var pos = !ship && level.getBlockState(clicked).canBeReplaced() ? clicked : clicked.above();
+                if (!level.dimension().equals(Level.OVERWORLD)
+                        || (ship && (ctx.getClickedFace() != Direction.UP || !level.getBlockState(clicked).is(Blocks.LODESTONE)))) {
                     if (ctx.getPlayer() != null && !level.isClientSide())
                         ctx.getPlayer().sendSystemMessage(Component.translatable(ship ? "space.place_ship" : "space.place_pad"));
                     return InteractionResult.FAIL;
                 }
                 if (level instanceof ServerLevel world) {
-                    int width = ship ? 12 : 13;
-                    int height = ship ? 4 : 0;
-                    var corner = pos.offset(-width, 0, -14);
-                    var opposite = pos.offset(width, height, 14);
-                    for (var cell : BlockPos.betweenClosed(corner, opposite)) {
-                        if (!world.getBlockState(cell).canBeReplaced()) {
-                            if (ctx.getPlayer() != null) ctx.getPlayer().sendSystemMessage(Component.literal(
-                                    ship ? "Для корпуса нужно свободное место над площадкой." :
-                                    "Для площадки нужна свободная площадка 27 × 29."));
-                            return InteractionResult.FAIL;
+                    if (world.isOutsideBuildHeight(pos) || world.isOutsideBuildHeight(pos.above(ship ? 4 : 5))) {
+                        return InteractionResult.FAIL;
+                    }
+                    for (int z = -14; z <= 14; z++) {
+                        int deckWidth = 13 - Math.max(0, Math.abs(z) - 10);
+                        int width = ship ? Math.min(12, deckWidth) : deckWidth;
+                        var first = pos.offset(-width, 0, z);
+                        var last = pos.offset(width, ship ? 4 : 5, z);
+                        for (var cell : BlockPos.betweenClosed(first, last)) {
+                            var state = world.getBlockState(cell);
+                            if (state.hasBlockEntity() || state.getDestroySpeed(world, cell) < 0
+                                    || state.is(Blocks.LODESTONE) || (ship && !state.canBeReplaced())) {
+                                if (ctx.getPlayer() != null) ctx.getPlayer().sendSystemMessage(Component.literal(
+                                        ship ? "Над магнитом есть препятствие." : "В контуре есть защищённый блок. Смести центр площадки."));
+                                return InteractionResult.FAIL;
+                            }
                         }
                     }
                     var server = world.getServer();

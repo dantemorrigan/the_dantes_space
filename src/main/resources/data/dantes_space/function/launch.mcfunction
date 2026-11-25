@@ -1,4 +1,7 @@
-execute unless block ~ ~-1 ~ lodestone run tellraw @p {"text":"Установи звездолёт на центральный магнит площадки."}
-execute unless block ~ ~-1 ~ lodestone run give @p minecraft:bat_spawn_egg[minecraft:entity_data={id:"minecraft:marker",Tags:["ds.ship"]},minecraft:custom_name={text:"Скат"}]
-execute if block ~ ~-1 ~ lodestone run function dantes_space:depart
-kill @s
+execute unless block ~ ~-1 ~ lodestone run return run function dantes_space:invalid_dock
+execute if entity @e[tag=ds.docked,distance=..2] run return run function dantes_space:invalid_dock
+function dantes_space:skat
+tag @s add ds.docked
+tag @s remove ds.ship
+scoreboard players set @s ds.phase 0
+tellraw @a[distance=..32] {"text":"Скат готов. Вход с кормы между двигателями. Присядь у штурвала для старта.","color":"aqua"}

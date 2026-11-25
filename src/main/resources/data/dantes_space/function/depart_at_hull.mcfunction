@@ -1,5 +1,5 @@
-scoreboard players add #berth ds.x 512
-execute store result storage dantes_space:launch x int 1 run scoreboard players get #berth ds.x
+execute unless data entity @s data.berth run function dantes_space:allocate_berth
+data modify storage dantes_space:launch x set from entity @s data.berth
 execute store result storage dantes_space:launch hx int 1 run data get entity @s Pos[0]
 execute store result storage dantes_space:launch hy int 1 run data get entity @s Pos[1]
 execute store result score @s ds.z run data get entity @s Pos[2]

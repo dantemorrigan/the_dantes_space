@@ -91,6 +91,9 @@ public final class SpaceMod implements ModInitializer {
                 for (int x = -16; x <= 16; x += 16) {
                     for (int z = -16; z <= 16; z += 16) level.getChunkAt(center.offset(x, 0, z));
                 }
+                level.getChunkAt(center.offset(-26, 11, -59));
+                level.getChunkAt(center.offset(19, 15, -70));
+                level.getChunkAt(center.offset(12, 7, -53));
                 return 1;
             }));
             dispatcher.register(root);

@@ -1,6 +1,1 @@
-{
-  "model": {
-    "type": "minecraft:model",
-    "model": "minecraft:item/elytra"
-  }
-}
+{"model": {"type": "minecraft:model", "model": "dantes_space:item/starship"}}

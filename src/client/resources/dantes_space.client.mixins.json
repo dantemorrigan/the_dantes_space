@@ -3,7 +3,7 @@
   "package": "com.dantemorrigan.space.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "FlightCameraMixin"
+    "FlightCameraMixin","OrbitSkyMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,5 +1,5 @@
 kill @e[tag=ds.body,distance=..210]
-execute positioned ~ ~ ~-88 run function dantes_space:planet
-execute positioned ~ ~ ~-115 run function dantes_space:planet
-execute positioned ~ ~ ~-157 run function dantes_space:planet
-scoreboard players set @e[tag=ds.bridge,distance=..1,limit=1] ds.phase 0
+summon item_display ~-26 ~11 ~-76 {Tags:["ds.body"],teleport_duration:2,view_range:7f,brightness:{sky:13,block:9},item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"dantes_space:pelagos"}},transformation:{translation:[0f,0f,0f],scale:[28f,28f,28f],left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f]}}
+summon item_display ~19 ~16 ~-102 {Tags:["ds.body"],teleport_duration:2,view_range:7f,brightness:{sky:13,block:9},item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"dantes_space:vesper"}},transformation:{translation:[0f,0f,0f],scale:[39f,39f,39f],left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f]}}
+summon item_display ~12 ~7 ~-53 {Tags:["ds.body"],teleport_duration:2,view_range:7f,brightness:{sky:13,block:9},item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"dantes_space:cinder"}},transformation:{translation:[0f,0f,0f],scale:[8f,8f,8f],left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f]}}
+scoreboard players set @s ds.phase 0

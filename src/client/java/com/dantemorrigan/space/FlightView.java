@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import org.lwjgl.glfw.GLFW;
 
 public final class FlightView implements ClientModInitializer {
-    private static final ResourceKey<Level> COSMOS = ResourceKey.create(Registries.DIMENSION,
+    public static final ResourceKey<Level> COSMOS = ResourceKey.create(Registries.DIMENSION,
             Identifier.fromNamespaceAndPath("dantes_space", "cosmos"));
     private static final int[] DISTANCES = {32, 44, 60};
     private static int zoom = 1;

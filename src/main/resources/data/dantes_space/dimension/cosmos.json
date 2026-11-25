@@ -1,0 +1,14 @@
+{
+  "type": "dantes_space:cosmos",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [],
+      "biome": "dantes_space:dead_space",
+      "lakes": false,
+      "features": false,
+      "structure_overrides": []
+    }
+  }
+}
+

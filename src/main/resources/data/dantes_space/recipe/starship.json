@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "BEB",
+    "IFI"
+  ],
+  "key": {
+    "G": "minecraft:tinted_glass",
+    "B": "minecraft:blue_concrete",
+    "E": "minecraft:ender_pearl",
+    "I": "minecraft:iron_block",
+    "F": "minecraft:furnace"
+  },
+  "result": {
+    "id": "minecraft:bat_spawn_egg",
+    "components": {
+      "minecraft:custom_name": {
+        "text": "Звездолёт «Скат»",
+        "italic": false
+      },
+      "minecraft:entity_data": {
+        "id": "minecraft:marker",
+        "Tags": [
+          "ds.ship"
+        ]
+      }
+    }
+  }
+}

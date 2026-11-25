@@ -1,0 +1,1 @@
+{"schemaVersion":1,"id":"dantes_space","version":"0.1.0","name":"The Dante’s Space","environment":"*","depends":{"minecraft":"26.1.2","fabricloader":">=0.20.1","fabric-api":"*","java":">=25"}}

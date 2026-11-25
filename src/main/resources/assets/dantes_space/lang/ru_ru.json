@@ -1,0 +1,8 @@
+{
+  "item.dantes_space.landing_pad": "Посадочная площадка",
+  "item.dantes_space.starship": "Звездолёт «Скат»",
+  "space.place_ship": "Поставь корабль на магнит площадки в обычном мире.",
+  "space.place_pad": "Поставь площадку на свободное место в обычном мире.",
+  "key.category.dantes_space.flight": "Космоплавание",
+  "key.dantes_space.zoom": "Изменить дистанцию камеры корабля"
+}

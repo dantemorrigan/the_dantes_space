@@ -1,0 +1,8 @@
+{
+  "item.dantes_space.landing_pad": "Landing Pad",
+  "item.dantes_space.starship": "Skat Starship",
+  "space.place_ship": "Place the ship on the pad lodestone in the Overworld.",
+  "space.place_pad": "Place the pad on open ground in the Overworld.",
+  "key.category.dantes_space.flight": "Spaceflight",
+  "key.dantes_space.zoom": "Cycle ship camera distance"
+}

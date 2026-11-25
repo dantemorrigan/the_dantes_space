@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "dantes_space",
   "version": "0.1.0",
-  "name": "The Dante\u2019s Space",
+  "name": "The Dante’s Space",
   "environment": "*",
   "depends": {
     "minecraft": "26.1.2",
@@ -13,6 +13,9 @@
   "entrypoints": {
     "client": [
       "com.dantemorrigan.space.FlightView"
+    ],
+    "main": [
+      "com.dantemorrigan.space.SpaceMod"
     ]
   },
   "mixins": [

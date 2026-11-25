@@ -8,3 +8,13 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 }
 java { toolchain.languageVersion = JavaLanguageVersion.of(25) }
+
+loom {
+    splitEnvironmentSourceSets()
+    mods {
+        dantes_space {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.dantemorrigan.space.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "FlightCameraMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

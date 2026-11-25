@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -37,6 +38,18 @@ public final class SpaceMod implements ModInitializer {
                     return InteractionResult.FAIL;
                 }
                 if (level instanceof ServerLevel world) {
+                    int width = ship ? 12 : 13;
+                    int height = ship ? 4 : 0;
+                    var corner = pos.offset(-width, 0, -14);
+                    var opposite = pos.offset(width, height, 14);
+                    for (var cell : BlockPos.betweenClosed(corner, opposite)) {
+                        if (!world.getBlockState(cell).canBeReplaced()) {
+                            if (ctx.getPlayer() != null) ctx.getPlayer().sendSystemMessage(Component.literal(
+                                    ship ? "Для корпуса нужно свободное место над площадкой." :
+                                    "Для площадки нужна свободная площадка 27 × 29."));
+                            return InteractionResult.FAIL;
+                        }
+                    }
                     var server = world.getServer();
                     var source = server.createCommandSourceStack().withLevel(world)
                             .withPosition(new net.minecraft.world.phys.Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5)).withSuppressedOutput();
@@ -70,6 +83,16 @@ public final class SpaceMod implements ModInitializer {
                     return 1;
                 }));
             }
+            root.then(Commands.literal("prepare_orbit").executes(c -> {
+                var source = c.getSource();
+                var level = source.getLevel();
+                if (!level.dimension().equals(ResourceKey.create(Registries.DIMENSION, id("cosmos")))) return 0;
+                var center = BlockPos.containing(source.getPosition());
+                for (int x = -16; x <= 16; x += 16) {
+                    for (int z = -16; z <= 16; z += 16) level.getChunkAt(center.offset(x, 0, z));
+                }
+                return 1;
+            }));
             dispatcher.register(root);
         });
     }
